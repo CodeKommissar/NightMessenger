@@ -1,6 +1,8 @@
 "use strict";
 
 var createStylesheetElement = function(){
+	// Create the node used by the extension to apply the styles from
+	// nightmode.css to the messenger.com website
 	let a 		= chrome.extension.getURL("nightmode.css"),
 		link 	= document.createElement('link');
 
@@ -16,13 +18,17 @@ if (document.getElementById('nightMessenger')){
 	console.log("Already exists.");	
 } else {
 	let nightMessengerStylesheet = createStylesheetElement();
+	// Add the link responsible of loading the stylesheet to the website
 	document.head.appendChild(nightMessengerStylesheet);
+
+	// Set the state of the extension to confirm that the extension is active
     chrome.storage.sync.set({ activated : true }, function(){
       console.log("Activated");
     });   
 	console.log("Night Mode activated.");	
 }
 
+/* 👻👻👻 Ghost Code 👻👻👻  */
 // If jQuery not yet imported,
 // if(jQuery('#jquerylibrary').length){
 //   jQuery('<script src="jquery.js" id="jquerylibrary"</script>').appendTo("head");
